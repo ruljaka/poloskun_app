@@ -12,6 +12,7 @@ sealed class Graph(override val destination: String) : NavTarget {
     object MainGraph : Graph("main_graph")
     object HomeGraph : Graph("home_graph")
     object SettingsGraph : Graph("settings_graph")
+    object CartGraph : Graph("cart_graph")
 }
 
 sealed class Screen(
@@ -32,6 +33,10 @@ sealed class Screen(
     //SettingsGraph
     object Settings :
         Screen(destination = "SETTINGS", title = "Settings", icon = R.drawable.ic_settings)
+
+    //CartGraph
+    object Cart :
+        Screen(destination = "CART", title = "Cart", icon = R.drawable.ic_cart)
 }
 
 

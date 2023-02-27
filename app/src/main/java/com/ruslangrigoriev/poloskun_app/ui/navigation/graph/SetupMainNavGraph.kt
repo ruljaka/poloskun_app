@@ -14,5 +14,6 @@ fun SetupMainNavGraph(navController: NavHostController) {
     ) {
         homeNavGraph()
         settingsNavGraph()
+        cartNavGraph()
     }
 }

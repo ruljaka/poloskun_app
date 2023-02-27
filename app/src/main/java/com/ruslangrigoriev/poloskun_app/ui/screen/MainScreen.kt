@@ -8,16 +8,12 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.unit.dp
 import androidx.navigation.compose.rememberNavController
 import com.ruslangrigoriev.poloskun_app.ui.navigation.Navigator
 import com.ruslangrigoriev.poloskun_app.ui.navigation.Screen
 import com.ruslangrigoriev.poloskun_app.ui.navigation.graph.SetupMainNavGraph
 import com.ruslangrigoriev.poloskun_app.ui.widget.BottomBar
 import com.ruslangrigoriev.poloskun_app.ui.widget.TopBar
-import com.ruslangrigoriev.poloskun_app.utils.getTitleByRoute
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 
@@ -46,5 +42,19 @@ fun MainScreen(navigator: Navigator) {
         Box(modifier = Modifier.padding(innerPadding)) {
             SetupMainNavGraph(navController = navController)
         }
+    }
+}
+
+
+fun getTitleByRoute(route: String): String {
+    return when  {
+        route.contains(Screen.Login.destination) -> Screen.Login.title
+        route.contains(Screen.SignUp.destination) -> Screen.SignUp.title
+        route.contains(Screen.Forgot.destination) -> Screen.Forgot.title
+        route.contains(Screen.Home.destination) -> Screen.Home.title
+        route.contains(Screen.Details.destination) -> Screen.Details.title
+        route.contains(Screen.Settings.destination) -> Screen.Settings.title
+        route.contains(Screen.Cart.destination) -> Screen.Cart.title
+        else -> ("Route not found")
     }
 }

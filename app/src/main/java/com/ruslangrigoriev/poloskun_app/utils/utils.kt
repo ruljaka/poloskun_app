@@ -9,17 +9,6 @@ import kotlinx.coroutines.flow.flowOn
 import retrofit2.HttpException
 import java.io.IOException
 
-fun getTitleByRoute(route: String): String {
-    return when  {
-        route.contains(Screen.Login.destination) -> Screen.Login.title
-        route.contains(Screen.SignUp.destination) -> Screen.SignUp.title
-        route.contains(Screen.Forgot.destination) -> Screen.Forgot.title
-        route.contains(Screen.Home.destination) -> Screen.Home.title
-        route.contains(Screen.Details.destination) -> Screen.Details.title
-        route.contains(Screen.Settings.destination) -> Screen.Settings.title
-        else -> ("Route not found")
-    }
-}
 
 fun <T> getResponse(request: suspend () -> T): Flow<Resource<T>> {
     return flow {

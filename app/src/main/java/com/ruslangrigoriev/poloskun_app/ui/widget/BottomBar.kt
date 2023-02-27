@@ -29,6 +29,7 @@ fun BottomBar(
 ) {
     val screens = listOf(
         Screen.Home,
+        Screen.Cart,
         Screen.Settings
     )
     val navBackStackEntry by navController.currentBackStackEntryAsState()
@@ -37,7 +38,7 @@ fun BottomBar(
         backgroundColor = Teal200,
     ) {
         screens.forEach { screen ->
-            addItem(
+            AddItem(
                 screen,
                 currentDestination,
                 navigator,
@@ -48,7 +49,7 @@ fun BottomBar(
 }
 
 @Composable
-fun RowScope.addItem(
+fun RowScope.AddItem(
     screen: Screen,
     currentDestination: NavDestination?,
     navigator: Navigator,
@@ -69,7 +70,9 @@ fun RowScope.addItem(
             it.parent?.route ==
                     when (screen) {
                         is Screen.Home -> Graph.HomeGraph.destination
-                        else -> Graph.SettingsGraph.destination
+                        is Screen.Cart -> Graph.CartGraph.destination
+                        is Screen.Settings -> Graph.SettingsGraph.destination
+                        else -> {}
                     }
         } == true,
         onClick = {
