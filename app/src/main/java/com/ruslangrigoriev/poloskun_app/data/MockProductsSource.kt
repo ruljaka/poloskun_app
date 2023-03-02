@@ -2,18 +2,25 @@ package com.ruslangrigoriev.poloskun_app.data
 
 import com.ruslangrigoriev.poloskun_app.R
 import com.ruslangrigoriev.poloskun_app.domain.Product
+import com.ruslangrigoriev.poloskun_app.ui.screen.home.HomeScreenItem
+import com.ruslangrigoriev.poloskun_app.ui.screen.home.MainScreenViewDataMapper
 
 object MockProductsSource {
 
-private val imageMap = mapOf(
-    "1132П" to R.drawable.gel_universal,
-    "1140П" to R.drawable.gel_concentrat,
-    "1131П" to R.drawable.gel_beloe,
-    "1134П" to R.drawable.gel_chernoe,
-    "1153П" to R.drawable.gel_cvetnoe,
-    "1168П" to R.drawable.gel_detskoe,
+    private val imageMap = mapOf(
+        "1132П" to R.drawable.gel_universal,
+        "1140П" to R.drawable.gel_concentrat,
+        "1131П" to R.drawable.gel_beloe,
+        "1134П" to R.drawable.gel_chernoe,
+        "1153П" to R.drawable.gel_cvetnoe,
+        "1168П" to R.drawable.gel_detskoe,
+    )
 
-)
+    val mapper = MainScreenViewDataMapper()
+
+    fun previewMock(): List<HomeScreenItem.HomeScreenProductItem> {
+        return mapper.map(getAllProducts())
+    }
 
     fun getAllProducts(): List<Product> {
         return listOf(
@@ -46,7 +53,7 @@ private val imageMap = mapOf(
                 purchaseCost = 169.65,
                 retailPrice = 350.0,
                 isBottling = true,
-                image = imageMap["1132П"]!!
+                image = imageMap["1131П"]!!
             ),
             Product(
                 id = 4,

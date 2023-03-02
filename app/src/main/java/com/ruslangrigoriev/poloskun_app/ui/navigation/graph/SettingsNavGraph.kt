@@ -5,7 +5,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.navigation
 import com.ruslangrigoriev.poloskun_app.ui.navigation.Graph
 import com.ruslangrigoriev.poloskun_app.ui.navigation.Screen
-import com.ruslangrigoriev.poloskun_app.ui.screen.SettingsScreen
+import com.ruslangrigoriev.poloskun_app.ui.screen.settings.SettingsScreen
 
 fun NavGraphBuilder.settingsNavGraph() {
     navigation(

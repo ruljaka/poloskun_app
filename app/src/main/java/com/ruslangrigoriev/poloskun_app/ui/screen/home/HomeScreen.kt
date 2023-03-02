@@ -19,7 +19,9 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.ruslangrigoriev.poloskun_app.data.MockProductsSource
 import com.ruslangrigoriev.poloskun_app.ui.screen.home.HomeScreenEvent.OnItemCheckedChanged
 import com.ruslangrigoriev.poloskun_app.ui.screen.home.HomeScreenEvent.OpenDetailsScreen
 import com.ruslangrigoriev.poloskun_app.ui.widget.ProductItem
@@ -79,6 +81,13 @@ fun ProductsList(
 
         }
     }
+}
+
+@Preview(showBackground = true)@Composable
+fun ProductsListPreview() {
+    ProductsList(products = MockProductsSource.previewMock(),
+        onItemClick = {},
+        onItemCheck = { _, _ -> (run {}) })
 }
 
 @Composable

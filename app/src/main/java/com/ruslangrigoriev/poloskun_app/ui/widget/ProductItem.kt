@@ -127,7 +127,7 @@ fun ProductItem(
 
 @Preview(showBackground = true)
 @Composable
-fun HomeScreenPreview() {
+fun ProductItemPreview() {
     val product = HomeScreenItem.HomeScreenProductItem(
         id = 1,
         article = "1132П",
