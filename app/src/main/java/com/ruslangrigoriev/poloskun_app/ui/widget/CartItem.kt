@@ -1,7 +1,6 @@
 package com.ruslangrigoriev.poloskun_app.ui.widget
 
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -12,12 +11,13 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.Icon
+import androidx.compose.material.IconButton
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
@@ -39,7 +39,6 @@ fun CartItem(
         modifier = Modifier
             .fillMaxWidth()
             .size(height = 100.dp, width = 0.dp)
-            .background(Color.White)
             .clickable { onItemClick(product.id) }
     ) {
         Row(
@@ -47,7 +46,6 @@ fun CartItem(
             horizontalArrangement = Arrangement.SpaceBetween,
             modifier = Modifier
                 .fillMaxWidth()
-                .background(Color.Cyan)
         ) {
             Image(
                 painter = painterResource(product.image),
@@ -55,7 +53,6 @@ fun CartItem(
                 contentScale = ContentScale.Crop,
                 modifier = Modifier
                     .size(100.dp)
-                    .background(Color.Blue)
                     .clip(RoundedCornerShape(10.dp))
             )
             Column(
@@ -65,41 +62,75 @@ fun CartItem(
                     .weight(1f)
                     .fillMaxHeight()
                     .padding(start = 16.dp)
-                    .background(Color.Red)
             ) {
                 Text(
                     text = product.name,
-                    modifier = Modifier
-                        .background(Color.Green)
-                        //.fillMaxWidth()
-                        ,
+                    modifier = Modifier,
                     fontSize = 14.sp,
                     color = textDescr,
-                    maxLines = 2
+                    maxLines = 2,
+                    //fontFamily = FontFamily.SansSerif
                 )
                 Text(
                     text = product.retailPrice.toString(),
-                    modifier = Modifier
-                        .background(Color.Blue),
+                    modifier = Modifier,
                     fontSize = 16.sp,
                     color = Teal200,
                     maxLines = 3
                 )
-                Text(
-                    text = product.retailPrice.toString(),
+                Row(
+                    verticalAlignment = Alignment.Top,
+                    horizontalArrangement = Arrangement.Start,
                     modifier = Modifier
-                        .background(Color.Blue),
-                    fontSize = 16.sp,
-                    color = Teal200,
-                    maxLines = 3
-                )
+                        .fillMaxWidth()
+                ) {
+                    IconButton(
+                        modifier = Modifier
+                            .size(24.dp),
+                        onClick = {},
+                        enabled = true,
+                        content = {
+                            Image(
+                                painter = painterResource(id = R.drawable.ic_plus),
+                                contentDescription = "",
+                            )
+                        }
+                    )
+                    Text(
+                        text = "01",
+                        modifier = Modifier
+                            .padding(horizontal = 8.dp),
+                        fontSize = 16.sp,
+                        color = Teal200,
+                        maxLines = 3
+                    )
+                    IconButton(
+                        modifier = Modifier
+                            .size(24.dp),
+                        onClick = {},
+                        enabled = true,
+                        content = {
+                            Image(
+                                painter = painterResource(id = R.drawable.ic_minus),
+                                contentDescription = ""
+                            )
+                        }
+                    )
+                }
             }
-            Image(
-                painter = painterResource(id = R.drawable.ic_delete),
-                contentDescription = null,
+            IconButton(
                 modifier = Modifier
                     .padding(start = 16.dp)
-                    .size(24.dp)
+                    .size(24.dp),
+                onClick = {},
+                enabled = true,
+                content = {
+                    Icon(
+                        painter = painterResource(id = R.drawable.ic_delete),
+                        contentDescription = "",
+                        tint = Teal200
+                    )
+                }
             )
 
         }

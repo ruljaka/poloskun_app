@@ -23,7 +23,7 @@ object MockProductsSource {
     }
 
     fun getAllProducts(): List<Product> {
-        return listOf(
+        val list = mutableListOf(
             Product(
                 id = 1,
                 article = "1132П",
@@ -86,5 +86,7 @@ object MockProductsSource {
                 image = imageMap["1168П"]!!
             )
         )
+        list.addAll(list)
+        return list
     }
 }
