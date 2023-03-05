@@ -63,7 +63,7 @@ fun CartScreen() {
         Row(
             horizontalArrangement = Arrangement.SpaceBetween,
             modifier = Modifier
-                .padding(horizontal = 16.dp)
+                .padding(16.dp)
                 .fillMaxWidth()
         ) {
             Text(

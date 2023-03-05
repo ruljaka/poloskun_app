@@ -22,21 +22,36 @@ fun MainScreen(navigator: Navigator) {
 
     val navController = rememberNavController()
     val title = remember { mutableStateOf("") }
+    val rootScreens = listOf(
+        Screen.Home.title,
+        Screen.Settings.title,
+        Screen.Cart.title
+    )
+    val isRootScreen = remember { mutableStateOf(false) }
 
     LaunchedEffect("main_navigation") {
         navigator.sharedFlow
             .onEach {
                 navController.navigate(it.first, it.second)
-                //title.value = getTitleByRoute(it.first)
             }.launchIn(this)
         navController.currentBackStackEntryFlow
             .onEach { backStackEntry ->
-                backStackEntry.destination.route?.let { title.value = getTitleByRoute(it) }
+                backStackEntry.destination.route?.let {
+                    title.value = getTitleByRoute(it)
+                    isRootScreen.value = rootScreens.contains(title.value)
+                }
             }.launchIn(this)
     }
 
     Scaffold(
-        topBar = { TopBar(title.value) },
+        topBar = {
+            if (isRootScreen.value) {
+                TopBar(
+                    title = title.value,
+                    isRootScreen = isRootScreen.value,
+                    popOnClick = { navController.popBackStack() })
+            }
+        },
         bottomBar = { BottomBar(navController, navigator) },
     ) { innerPadding ->
         Box(modifier = Modifier.padding(innerPadding)) {
@@ -45,9 +60,8 @@ fun MainScreen(navigator: Navigator) {
     }
 }
 
-
 fun getTitleByRoute(route: String): String {
-    return when  {
+    return when {
         route.contains(Screen.Login.destination) -> Screen.Login.title
         route.contains(Screen.SignUp.destination) -> Screen.SignUp.title
         route.contains(Screen.Forgot.destination) -> Screen.Forgot.title

@@ -15,6 +15,7 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Button
 import androidx.compose.material.ButtonDefaults
+import androidx.compose.material.IconButton
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
@@ -37,6 +38,7 @@ import com.ruslangrigoriev.poloskun_app.ui.theme.Teal200
 import com.ruslangrigoriev.poloskun_app.ui.theme.textDescr
 import com.ruslangrigoriev.poloskun_app.ui.theme.textMain
 import com.ruslangrigoriev.poloskun_app.utils.format
+import java.util.Stack
 
 @Composable
 fun ProductItem(
@@ -59,15 +61,31 @@ fun ProductItem(
             horizontalAlignment = Alignment.Start,
             verticalArrangement = Arrangement.SpaceBetween,
         ) {
-            Image(
-                painter = painterResource(product.image),
-                contentDescription = "image",
-                contentScale = ContentScale.Crop,
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .clip(RoundedCornerShape(10.dp))
-            )
-
+            Box(
+                contentAlignment = Alignment.BottomEnd
+            ) {
+                Image(
+                    painter = painterResource(product.image),
+                    contentDescription = "image",
+                    contentScale = ContentScale.Crop,
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .clip(RoundedCornerShape(10.dp))
+                )
+                IconButton(
+                    modifier = Modifier
+                        .padding(8.dp)
+                        .size(32.dp),
+                    onClick = {},
+                    enabled = true,
+                    content = {
+                        Image(
+                            painter = painterResource(id = R.drawable.ic_to_cart),
+                            contentDescription = "",
+                        )
+                    }
+                )
+            }
             Text(
                 text = product.name,
                 modifier = Modifier
@@ -79,48 +97,44 @@ fun ProductItem(
             )
             Row(
                 modifier = Modifier
-                    //.background(Color.Green)
                     .fillMaxWidth(),
                 verticalAlignment = Alignment.Bottom,
                 horizontalArrangement = Arrangement.SpaceBetween
             ) {
                 Text(
                     text = "${product.retailPrice.format(0)} руб.",
-                    modifier = Modifier
-                    //.background(Color.Cyan)
-                    //.padding(top = 8.dp)
-                    ,
+                    modifier = Modifier,
                     color = textMain,
                     fontSize = 16.sp,
                     fontWeight = FontWeight.Bold
                 )
 
             }
-            Button(
-                onClick = { onItemCheck(index, !product.isChecked) },
-                colors = ButtonDefaults.buttonColors(
-                    backgroundColor = if (product.isChecked) Purple500 else Teal200,
-                    contentColor = Color.White
-                ),
-                modifier =
-                Modifier
-                    //.background(Teal200)
-                    //.height(56.dp)
-                    .fillMaxWidth()
-            ) {
-                Image(
-                    painter = painterResource(id = R.drawable.icon_basket),
-                    contentDescription = null,
-                    modifier = Modifier
-                        .padding(end = 8.dp)
-                        .size(24.dp)
-                )
-                Text(
-                    text = if (product.isChecked) "Удалить" else "В корзину",
-                    maxLines = 1,
-                    fontWeight = FontWeight.Medium
-                )
-            }
+//            Button(
+//                onClick = { onItemCheck(index, !product.isChecked) },
+//                colors = ButtonDefaults.buttonColors(
+//                    backgroundColor = if (product.isChecked) Purple500 else Teal200,
+//                    contentColor = Color.White
+//                ),
+//                modifier =
+//                Modifier
+//                    //.background(Teal200)
+//                    //.height(56.dp)
+//                    .fillMaxWidth()
+//            ) {
+//                Image(
+//                    painter = painterResource(id = R.drawable.icon_basket),
+//                    contentDescription = null,
+//                    modifier = Modifier
+//                        .padding(end = 8.dp)
+//                        .size(24.dp)
+//                )
+//                Text(
+//                    text = if (product.isChecked) "Удалить" else "В корзину",
+//                    maxLines = 1,
+//                    fontWeight = FontWeight.Medium
+//                )
+//            }
         }
     }
 }
